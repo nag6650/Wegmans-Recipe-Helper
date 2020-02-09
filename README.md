@@ -26,6 +26,7 @@ Then, go to the ip address indicated on the command line.
 
 ![Image of Home Page](recipeHelper_home.png)
 ![Image of Confirmation Page](recipeHelper_confirm.png)
+![Image of Confirmation Page](recipeHelper_table.png)
 
 ### Enhancements
 With more time or resources this project could be improved by:
