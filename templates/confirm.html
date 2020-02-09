@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="{{ url_for('static', filename='centeredcss.css') }}">
+	</head>
+
+	<div id="logo">
+		<img src="/static/img/logotransp.png" alt="logo"/>
+	</div>
+	<!-- <hr class="headerLine"> -->
+	
+   <body>
+   <table>
+		<tr>
+			<th>Ingredient</th>
+		</tr>
+		{% for ing in ingList %}
+		<tr>
+			<td>{{ing}}</td> 
+		</tr>
+		{% endfor %}
+	</table>
+   </body>
+</html>

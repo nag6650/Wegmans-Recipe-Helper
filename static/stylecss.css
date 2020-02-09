@@ -1,0 +1,27 @@
+body {
+	background-color: blue;
+}
+
+form{
+	margin-left:225px
+}
+
+
+#logo {
+	width:283px;
+	height:187px;
+    position: relative;
+}
+#logo img {
+	width:283px;
+	height:187px;
+    position: absolute;
+    top: 0px;
+    right: 20px;
+}
+
+
+hr.headerLine {
+	border-top: 2px solid white;
+}
+
