@@ -23,15 +23,15 @@ BeautifulSoup4 (python web scraping): https://pypi.org/project/beautifulsoup4/
 ***INSERT CURRENT ISSUES AND POTENTIAL ENHANCEMENTS/FIXING***
 
 ### Deployment
-https://flask.palletsprojects.com/en/1.1.x/deploying/
+Flask has several options and tutorials for deploying to a live environment: https://flask.palletsprojects.com/en/1.1.x/deploying/
 
 
-#### Built With
+### Built With
 - Flask - The web framework used
 - Google Natural Language API - Entity Analysis
 - Wegman's API - Used to determine product information
 
-#### Authors
+### Authors
 - Nick Gardner - Web Scraping
 - Ethan Howes - Entity Analysis
 - Nate Kushner - Flask Web Design
