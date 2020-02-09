@@ -94,6 +94,12 @@ def scrape(url):
 def parse(string):
     string = string.split("\n")
     string = " ".join(string)
+    string = string.split(")")
+    string = " ".join(string)
+    string = string.split("(")
+    string = " ".join(string)
+    string = string.split("/")
+    string = " ".join(string)
     pat = re.compile(r"([0-9])")
     string = (pat.sub(" \\1 ", string))
 
@@ -101,6 +107,6 @@ def parse(string):
 
 
 def main():
-    return parse(scrape("https://www.foodandwine.com/recipes/steak-diane"))
+    return parse(scrape("https://www.wholesomeyum.com/recipes/taco-salad/"))
 
 print(main())
