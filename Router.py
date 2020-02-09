@@ -10,16 +10,13 @@ import requests
 import json
 import time
 import functools
-import key_rotator
-import queue
 from collections import OrderedDict
 
 URLBEG = "https://api.wegmans.io/products/"
 APIVERSION = "api-version=2018-10-18&subscription-key="
-APIKEY = key_rotator.next_key(key_rotator.KEYCHAIN)
+APIKEY = "78716f9496d8471396c504a473056015"
 URLEND = APIVERSION + APIKEY
 STORE = "25"
-GET_COUNT = 0
 
 # @functools.lru_cache(maxsize=128)
 def getItemRoute( prodName ):
@@ -28,14 +25,10 @@ def getItemRoute( prodName ):
     :param prodName:
     :return:
     """
-    global GET_COUNT
-    global APIKEY
-    global URLEND
 
     prodSearch = "search?query="
     quoteProdName = '"' + prodName + '"'
 
-    URLEND = APIVERSION + APIKEY
 
     url = URLBEG + prodSearch + quoteProdName + '&' + URLEND
 
