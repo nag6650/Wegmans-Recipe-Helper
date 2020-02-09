@@ -106,7 +106,7 @@ def parse(string):
     return string
 
 
-def main():
-    return parse(scrape("https://www.wholesomeyum.com/recipes/taco-salad/"))
-
-print(main())
+# def main():
+#     return parse(scrape("https://www.wholesomeyum.com/recipes/taco-salad/"))
+#
+# print(main())

@@ -70,8 +70,8 @@ def ingredient_getter(ingredient_list):
     return entity_list
 
 
-def main():
-    print(ingredient_getter(parse(scrape("https://www.spendwithpennies.com/club-sandwich/"))))
-
-
-main()
+# def main():
+#     print(ingredient_getter(parse(scrape("https://www.spendwithpennies.com/club-sandwich/"))))
+#
+#
+# main()
