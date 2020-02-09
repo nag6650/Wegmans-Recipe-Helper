@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link rel="stylesheet" href="{{ url_for('static', filename='centeredcss.css') }}">
+	</head>
+
+	<div id="logo">
+		<img src="/static/img/logotransp.png" alt="logo"/>
+	</div>
+	<!-- <hr class="headerLine"> -->
+	
+   <body>
+	<div class="example2">
+<h3>WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS WEGMANS ROCKS </h3>
+</div>
+      <!-- <form action = "http://localhost:5000/result" method = "POST">
+         <p>Name <input type = "text" name = "Name" /></p>
+         <p><input type = "submit" value = "submit" /></p>
+      </form> -->
+	  
+		<div class="submit-page">
+			<div class="form">
+				<form class="submit-form" action="http://localhost:5000/confirm" method = "POST">
+				  <input type="text" placeholder="URL" name="Name"/>
+				  <button type="submit" value="submit">Submit</button>
+				</form>
+			</div>
+		</div>
+   </body>
+</html>
