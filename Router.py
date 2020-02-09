@@ -8,24 +8,33 @@ Purpose: This will make the Wegman's API call to get a JSON List of all products
 
 import requests
 import json
-import random
+import time
+import functools
+import key_rotator
 from collections import OrderedDict
 
 URLBEG = "https://api.wegmans.io/products/"
 APIVERSION = "api-version=2018-10-18&subscription-key="
-APIKEY = "78716f9496d8471396c504a473056015"
+APIKEY = key_rotator.next_key(key_rotator.KEYCHAIN)
 URLEND = APIVERSION + APIKEY
 STORE = "25"
+GET_COUNT = 0
 
-def getSkuRoute( prodName ):
+@functools.lru_cache(maxsize=128)
+def getItemRoute( prodName ):
     """
 
     :param prodName:
     :return:
     """
+    global GET_COUNT
+    global APIKEY
+    global URLEND
 
     prodSearch = "search?query="
     quoteProdName = '"' + prodName + '"'
+
+    URLEND = APIVERSION + APIKEY
 
     url = URLBEG + prodSearch + quoteProdName + '&' + URLEND
 
@@ -43,20 +52,32 @@ def getSkuRoute( prodName ):
     # print(type(obj["results"]))
     availSkuList = []
     resultsList = obj["results"]
+    for result in resultsList:
+        GET_COUNT += 1
+        if (GET_COUNT > 90):
+            APIKEY = key_rotator.next_key(key_rotator.KEYCHAIN)
+            GET_COUNT == 0
 
-    if (len(resultsList)> 30):
-        for i in range(0, 30, 1):
+    # if (len(resultsList) > 30):
+        # for i in range(0, 30, 1):
+
             # randomItem = random.choice(resultsList)
             #check availability in store
             # avail = getAvailabilityRoute(randomItem["sku"], STORE)
-            avail = getAvailabilityRoute(resultsList[i]["sku"], STORE)
-            if (avail==True): #add the available ones to a list
-                availSkuList.append(resultsList[i]["sku"])
-    else:
-        for results in resultsList:
-            avail = getAvailabilityRoute(results["sku"], STORE)
-            if (avail==True): #add the available ones to a list
-                availSkuList.append(results["sku"])
+            #avail = getAvailabilityRoute(resultsList[i]["sku"], STORE)
+            # if (avail==True): #add the available ones to a list
+            #     availSkuList.append(resultsList[i]["sku"])
+    # else:
+    #     for results in resultsList:
+    #         avail = getAvailabilityRoute(results["sku"], STORE)
+    #         if (avail==True): #add the available ones to a list
+    #             availSkuList.append(results["sku"])
+
+    for i in range(0, len(resultsList), 1 )
+        if i == 90 :
+
+
+
 
     if(len(availSkuList)==0):
         unavailDict = { "name" : "No availabilities at this location" }
@@ -75,7 +96,6 @@ def getSkuRoute( prodName ):
         unavailDict = { "name" : "No prices available" }
         print(unavailDict)
         return unavailDict
-    print(priceDict)
 
 
 
@@ -104,7 +124,7 @@ def getSkuRoute( prodName ):
 
     item_dict = dict(zip(itemKeyNames, itemKeyValues))
 
-    print(item_dict)
+
     return item_dict
 
 def getAvailabilityRoute( skuNum, storeId ):
@@ -197,8 +217,12 @@ def getLocRoute(skuNum, storeId):
     return locInfo
 
 if __name__ == "__main__":
+    test_term = input("Enter a food item\n")
+    start_time = time.time()
+    print(getItemRoute(test_term))
+    end_time = time.time()
+    print(end_time-start_time)
 
-    # test_term = input("Enter a food item\n")
-    getSkuRoute("eggs")
-    getSkuRoute("cheddar cheese")
-    getSkuRoute("ham")
+
+    # getSkuRoute("cheddar cheese")
+    # getSkuRoute("ham")
