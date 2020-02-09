@@ -81,7 +81,6 @@ def scrape(url):
                                 break
     return best_string
 
-
 def parse(string):
     pat = re.compile(r"([0-9])")
     string = (pat.sub(" \\1 ", string))
@@ -90,6 +89,6 @@ def parse(string):
 
 
 def main():
-    return parse(scrape("https://cooking.nytimes.com/recipes/1019981-seared-scallop-pasta-with-burst-tomatoes-and-herbs?action=click&region=Sam%20Sifton%27s%20Suggestions&rank=4"))
+    return parse(scrape("https://www.food.com/recipe/to-die-for-crock-pot-roast-27208"))
 
 print(main())
