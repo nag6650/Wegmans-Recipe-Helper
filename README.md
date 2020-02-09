@@ -29,6 +29,7 @@ Then, go to the ip address indicated on the command line.
 ### Enhancements
 With more time or resources this project could be improved by:
 - Train our own neural network to properly identify food types
+- Identify and display amount of each ingredient neccessary for the recipe
 - Deploy to a live environment (web and mobile)
 - More substance to the web environment (links, store map, etc.)
 - Enhancements for the Wegmans API (more requests per minute, more efficient queries for common items, implementing store locator and recipe features)
