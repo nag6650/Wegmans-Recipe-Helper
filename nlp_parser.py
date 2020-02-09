@@ -24,7 +24,7 @@ def ingredient_getter(ingredient_list):
 
 
 def main():
-    ingredient_getter(" 1/2 butter")
+    ingredient_getter(" 1/2. butter")
 
 
 main()
