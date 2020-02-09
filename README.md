@@ -27,12 +27,12 @@ https://flask.palletsprojects.com/en/1.1.x/deploying/
 
 
 #### Built With
-Flask - The web framework used
-Google Natural Language API - Entity Analysis
-Wegman's API - Used to determine product information
+- Flask - The web framework used
+- Google Natural Language API - Entity Analysis
+- Wegman's API - Used to determine product information
 
 #### Authors
-Nick Gardner - Web Scraping
-Ethan Howes - Entity Analysis
-Nate Kushner - Flask Web Design
-Albin Lang - Wegman's API Utilization
+- Nick Gardner - Web Scraping
+- Ethan Howes - Entity Analysis
+- Nate Kushner - Flask Web Design
+- Albin Lang - Wegman's API Utilization
