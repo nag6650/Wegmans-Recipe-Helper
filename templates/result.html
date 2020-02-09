@@ -1,18 +1,89 @@
 <!DOCTYPE html>
 
 <html>
-	<head>
-		<link rel="centeredcss" href="centeredcss.css">
+<head>
+<style>
+#ingredientList {
+  margin-top: 20px;
+  margin-left:auto;
+  margin-right:auto;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 40%;
+}
+
+#missingList {
+  margin-top: 20px;
+  margin-left:auto;
+  margin-right:auto;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  color:white;
+  border-collapse: collapse;
+  width: 40%;
+}
+
+#ingredientList td, #ingredientList th {
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#ingredientList tr:nth-child(even){background-color: #f2f2f2;}
+
+#ingredientList tr:hover {background-color: #ddd;}
+
+#ingredientList th {
+  padding-top: 12px;
+  font-size: 20px;
+  text-align: center;
+  background-color: #367c3a;
+  color: white;
+}
+</style>
+
+		<link rel="stylesheet" href="{{ url_for('static', filename='centeredcss.css') }}">
 	</head>
 
+	<div id="logo">
+		<img src="/static/img/logotransp.png" alt="logo"/>
+	</div>
+
+
    <body>
-      <table border = 1>
-         {% for key, value in result.items() %}
+        <table class="sortable" id="ingredientList">
             <tr>
-               <th> {{ key }} </th>
-               <td> {{ value }} </td>
+            <thead>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Aisle</th>
+                <th>Shelf</th>
+            </thead>
             </tr>
-         {% endfor %}
-      </table>
+
+            {% for dict in dictList %}
+            <td>{{dict["name"]}}</td>
+            <td>{{dict["aisle"]}}</td>
+            <td>{{dict["shelf"]}}</td>
+            <td>{{dict["price"]}}</td>
+
+            </tr>
+            					{% endfor %}
+    <th colspan="3" >Total Price:</th>
+            <td>{{price}}</td>
+
+
+
+        </table>
+   <br>
+
+   <table id="missingList">
+
+       <tr><thead><th>We couldn't find these items...</th></thead></tr>
+                   {% for ing in missing %}
+            <td>{{ing}}</td>
+   </tr>
+       {% endfor %}
+
+   </table>
    </body>
 </html>

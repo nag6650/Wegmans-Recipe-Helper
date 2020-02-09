@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, g
+from flask import Flask, render_template, request
 import nlp_parser
 import scraping
 import Router
@@ -17,25 +17,40 @@ ingList = []
 @app.route('/result', methods = {'POST', 'GET'})
 def result():
     if request.method == 'POST':
+        myListofDicts = []
+        missingItems = []
+        totalPrice = 0.00
         for ing in ingList:
+            product = Router.getSkuRoute(ing)
+            if product['name'] == "No availabilities at this location":
+                missingItems.append(ing)
+            else:
+                myListofDicts.append(product)
+                totalPrice += product['price']
 
+        return render_template("result.html", dictList=myListofDicts, missing=missingItems, price=round(totalPrice,2))
 
 @app.route('/confirm', methods = {'POST', 'GET'})
 def confirm():
     if request.method == 'POST':
         global ingList
-        # ingList = get array
         try:
             ingName = request.form['submit_button']
-            #print("hi " + ingName)
             ingList.remove(ingName)
         except Exception:
             try:
                 ingList = nlp_parser.ingredient_getter(scraping.scrape(request.form['Name']))
             except Exception:
+                try:
+                    ingName = request.form['ing']
+                    print(ingName)
+                    ingList.append(ingName)
+                except:
+                    print("poop")
+                    pass
                 pass
-            #print("failure")
             pass
+
         return render_template("confirm.html", ingList=ingList)
 
 
