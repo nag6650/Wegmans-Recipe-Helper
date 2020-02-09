@@ -17,11 +17,11 @@ def init_keys(*args):
     """
     global KEYCHAIN
     for arg in args:
+        print(arg)
         KEYCHAIN.put(arg)
     return none
 
 def next_key(keychain):
     front = keychain.get()
     keychain.put(front)
-    print(front)
     return front
