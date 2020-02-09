@@ -15,7 +15,7 @@ bad_types = [e_types.NUMBER, e_types.DATE, e_types.ADDRESS, e_types.WORK_OF_ART]
 # Unwanted words
 bad_words = ["Ingredients", "ingredients", "teaspoon", "tablespoon", "garnish", "main", "Dash", "dash",
              "Blender", "blender", "package", "Package", "kind", "Kind", "Cup", "cup", "more", "More",
-             "size", "Size", "little", "Little"]
+             "size", "Size", "little", "Little", "pound", "Pound", "foil", "Foil"]
 
 
 def noise_remover(ingredient_list):
@@ -33,7 +33,6 @@ def noise_remover(ingredient_list):
 def ingredient_getter(ingredient_list):
     print(ingredient_list)
     ingredient_list = noise_remover(ingredient_list)
-    # print(ingredient_list)
     entity_list = []
     document = types.Document(
         content=ingredient_list,
@@ -52,7 +51,7 @@ def ingredient_getter(ingredient_list):
 
 
 # def main():
-#     print(ingredient_getter(scrape("https://food52.com/recipes/82495-fresh-ginger-cake-from-sylvia-thompson")))
+#     print(ingredient_getter(scrape("https://tasty.co/recipe/parchment-lemon-dill-salmon")))
 #
 #
 # main()
