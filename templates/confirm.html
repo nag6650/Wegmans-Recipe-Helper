@@ -59,11 +59,15 @@
 			{% for ing in ingList %}
 		<tr>
 			<td>{{ing}}</td>
-		<!--	<td>
-    <form method="post">
-        <input type="submit" value="Delete" value = {{ing}}>
+		<td>
+    <!--<form method="post">
+        <input type="submit" value="Delete" action="http://localhost:5000/confirm" value = {{ing}}>
     </form>			</td>
 		</tr> -->
+			<form class="submit-form" action="http://localhost:5000/confirm" method = "POST">
+				<input type="submit" name="submit_button" value="{{ing}}"/>
+				</form>
+
 		{% endfor %}
 
 </table>
