@@ -17,25 +17,43 @@ ingList = []
 @app.route('/result', methods = {'POST', 'GET'})
 def result():
     if request.method == 'POST':
-        for ing in ingList:
+        #for ing in ingList:
+            # call Router's method
+            myListofDicts = [{
+                "name": "salt",
+                "price":"1.00",
+                "shelf":"L",
+                "aisle":12
+            }, {
+                "name": "pepper",
+                "price": "10000.00",
+                "shelf": "R",
+                "aisle": 21
 
+            }]
+            return render_template("result.html", dictList=myListofDicts)
 
 @app.route('/confirm', methods = {'POST', 'GET'})
 def confirm():
     if request.method == 'POST':
         global ingList
-        # ingList = get array
         try:
             ingName = request.form['submit_button']
-            #print("hi " + ingName)
             ingList.remove(ingName)
         except Exception:
             try:
                 ingList = nlp_parser.ingredient_getter(scraping.scrape(request.form['Name']))
             except Exception:
+                try:
+                    ingName = request.form['ing']
+                    print(ingName)
+                    ingList.append(ingName)
+                except:
+                    print("poop")
+                    pass
                 pass
-            #print("failure")
             pass
+
         return render_template("confirm.html", ingList=ingList)
 
 

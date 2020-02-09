@@ -96,6 +96,11 @@ hr.headerLine {
   transition: all 0.3 ease;
   cursor: pointer;
 }
+.form button2 {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+}
+
 .form button:hover,.form button:active,.form button:focus {
   background: #43A047;
 }

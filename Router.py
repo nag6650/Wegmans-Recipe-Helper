@@ -122,8 +122,8 @@ def getLocRoute(skuNum, storeId):
 
     url = URLBEG
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
 
-    test_term = input("Enter a food item\n")
-    getSkuRoute(str(test_term))
-    input("Close window to exit\n")
+ #   test_term = input("Enter a food item\n")
+ #   getSkuRoute(str(test_term))
+ #   input("Close window to exit\n")
