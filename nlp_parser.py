@@ -14,7 +14,8 @@ encoding_type = enums.EncodingType.UTF8
 bad_types = [e_types.NUMBER, e_types.DATE, e_types.ADDRESS, e_types.WORK_OF_ART]
 # Unwanted words
 bad_words = ["Ingredients", "ingredients", "teaspoon", "tablespoon", "garnish", "main", "Dash", "dash",
-             "Blender", "blender"]
+             "Blender", "blender", "package", "Package", "kind", "Kind", "Cup", "cup", "more", "More",
+             "size", "Size", "little", "Little"]
 
 
 def noise_remover(ingredient_list):
@@ -46,11 +47,12 @@ def ingredient_getter(ingredient_list):
             entity_list.append(entity.name)
 
         print("\n")
+    entity_list = list(dict.fromkeys(entity_list))
     return entity_list
 
 
-def main():
-    print(ingredient_getter(scrape("https://www.simplyrecipes.com/recipes/eggs_benedict/")))
-
-
-main()
+# def main():
+#     print(ingredient_getter(scrape("https://food52.com/recipes/82495-fresh-ginger-cake-from-sylvia-thompson")))
+#
+#
+# main()
