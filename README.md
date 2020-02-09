@@ -32,8 +32,9 @@ Flask has several options and tutorials for deploying to a live environment: htt
 
 ### Built With
 - Flask - The web framework used
-- Google Natural Language API - Entity Analysis
+- Google Natural Language API - Entity analysis
 - Wegman's API - Used to determine product information
+- BeautifulSoup4 - Web scraping
 
 ### Authors
 - Nick Gardner - Web Scraping
