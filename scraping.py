@@ -49,6 +49,16 @@ def scrape(url):
     for EachPart in soup.find_all("ul", {"class": regex}):
         arr[7] += EachPart.get_text()
 
+    arr.append("")
+    regex = re.compile('.*ingredients-body.*')
+    for EachPart in soup.find_all("div", {"class": regex}):
+        arr[8] += EachPart.get_text()
+
+    arr.append("")
+    regex = re.compile('.*recipe-ingredients.*')
+    for EachPart in soup.find_all("ul", {"class": regex}):
+        arr[9] += EachPart.get_text()
+
     best_string = ""
     best_length = -1;
     for str in arr:
@@ -80,6 +90,6 @@ def parse(string):
 
 
 def main():
-    return parse(scrape("https://www.allrecipes.com/recipe/8495/chicken-cordon-bleu-i/?internalSource=recipe%20hub&referringId=86&referringContentType=Recipe%20Hub&clickId=cardslot%2033"))
+    return parse(scrape("https://cooking.nytimes.com/recipes/1019981-seared-scallop-pasta-with-burst-tomatoes-and-herbs?action=click&region=Sam%20Sifton%27s%20Suggestions&rank=4"))
 
 print(main())
