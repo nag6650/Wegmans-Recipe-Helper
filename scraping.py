@@ -87,6 +87,7 @@ def parse(string):
 
     return string
 
+def main():
+    return parse(scrape("https://www.food.com/recipe/to-die-for-crock-pot-roast-27208"))
 
-#def main():
-#    return parse(scrape("https://www.food.com/recipe/to-die-for-crock-pot-roast-27208"))
+main()

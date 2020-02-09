@@ -35,20 +35,7 @@
 	<div id="logo">
 		<img src="/static/img/logotransp.png" alt="logo"/>
 	</div>
-	<!-- <hr class="headerLine"> -->
-	
    <body>
-   <!-- <table>
-		<tr>
-			<th>Ingredient</th>
-		</tr>
-		{% for ing in ingList %}
-		<tr>
-			<td>{{ing}}</td> 
-		</tr>
-		{% endfor %}
-	</table> -->
-
 
 <table id="ingredientList">
 	<thead>
@@ -65,7 +52,7 @@
     </form>			</td>
 		</tr> -->
 			<form class="submit-form" action="http://localhost:5000/confirm" method = "POST">
-				<input type="submit" name="submit_button" value="{{ing}}"/>
+				<input type="submit" name="submit_button" name="hi" value="{{ing}}"/>
 				</form>
 
 		{% endfor %}

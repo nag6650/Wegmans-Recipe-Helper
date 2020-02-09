@@ -49,8 +49,8 @@ def ingredient_getter(ingredient_list):
     return entity_list
 
 
-#def main():
-#    print(ingredient_getter(scrape("https://www.simplyrecipes.com/recipes/eggs_benedict/")))
+def main():
+    print(ingredient_getter(scrape("https://www.simplyrecipes.com/recipes/eggs_benedict/")))
 
 
-#main()
+main()

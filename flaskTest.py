@@ -4,8 +4,8 @@ import scraping
 
 
 app = Flask(__name__)
-global ingList
 ingList = []
+
 
 #@app.route('/result', methods = ['POST', 'GET'])
 #def hello_world():
@@ -16,8 +16,8 @@ ingList = []
 @app.route('/confirm', methods = {'POST', 'GET'})
 def confirm():
     if request.method == 'POST':
+        global ingList
         # ingList = get array
-        ingList = ['apple', 'orange', 'egg']
         try:
             ingName = request.form['submit_button']
             #print("hi " + ingName)
@@ -34,5 +34,4 @@ def confirm():
 
 @app.route('/')
 def index():
-    ingList = ['apple', 'orange', 'egg']
     return render_template('testsite.html')
