@@ -63,7 +63,6 @@ def scrape(url):
                                 best_length = len(str)
                                 best_string = str
                                 break
-
     return best_string
 
 
@@ -74,5 +73,7 @@ def parse(string):
     return string
 
 
-def main(url):
-    parse(scrape(url))
+def main():
+    return parse(scrape("https://www.tasteofhome.com/recipes/easy-pepper-steak/"))
+
+#print main()
