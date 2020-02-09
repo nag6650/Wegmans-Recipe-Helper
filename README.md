@@ -19,7 +19,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Usage
 To run the flask site on your local network, run these lines on the command line in the directory containing site.py:
 
->set FLASK_APP=site.py  
+>set FLASK_APP=wegSite.py  
 >python -m flask run
 
 Then, go to the ip address indicated on the command line.
