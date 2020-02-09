@@ -34,10 +34,31 @@ def scrape(url):
     for EachPart in soup.find_all("ul", {"id" : regex}):
         arr[4] += EachPart.get_text()
 
-    '''
-    for i in arr:
-        print i
-    '''
+    arr.append("")
+    regex = re.compile('.*recipe-ingredients.*')
+    for EachPart in soup.find_all("div", {"class": regex}):
+        arr[5] += EachPart.get_text()
+
+    arr.append("")
+    regex = re.compile('.*partial recipe-ingredients.*')
+    for EachPart in soup.find_all("div", {"class": regex}):
+        arr[6] += EachPart.get_text()
+
+    arr.append("")
+    regex = re.compile('.*ingredients-section.*')
+    for EachPart in soup.find_all("ul", {"class": regex}):
+        arr[7] += EachPart.get_text()
+
+    arr.append("")
+    regex = re.compile('.*ingredients-body.*')
+    for EachPart in soup.find_all("div", {"class": regex}):
+        arr[8] += EachPart.get_text()
+
+    arr.append("")
+    regex = re.compile('.*recipe-ingredients.*')
+    for EachPart in soup.find_all("ul", {"class": regex}):
+        arr[9] += EachPart.get_text()
+
     best_string = ""
     best_length = -1;
     for str in arr:
@@ -58,5 +79,16 @@ def scrape(url):
                                 best_length = len(str)
                                 best_string = str
                                 break
-
     return best_string
+
+def parse(string):
+    pat = re.compile(r"([0-9])")
+    string = (pat.sub(" \\1 ", string))
+
+    return string
+
+
+def main():
+    return parse(scrape("https://www.food.com/recipe/to-die-for-crock-pot-roast-27208"))
+
+print(main())
