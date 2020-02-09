@@ -14,7 +14,7 @@ from collections import OrderedDict
 
 URLBEG = "https://api.wegmans.io/products/"
 APIVERSION = "api-version=2018-10-18&subscription-key="
-APIKEY = "78716f9496d8471396c504a473056015"
+APIKEY = "4a9d2790a817469d952b3256638451f2"
 URLEND = APIVERSION + APIKEY
 STORE = "25"
 

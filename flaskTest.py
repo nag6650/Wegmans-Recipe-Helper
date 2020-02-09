@@ -22,7 +22,7 @@ def result():
         totalPrice = 0.00
         for ing in ingList:
             product = Router.getItemRoute(ing)
-            if product['name'] == "No availabilities at this location":
+            if product['name'] == "No availabilities at this location" or product['name'] == "No prices available":
                 missingItems.append(ing)
             else:
                 myListofDicts.append(product)
