@@ -84,7 +84,7 @@ def getItemRoute( prodName ):
     #     if (GET_COUNT > 90):
     #         APIKEY = key_rotator.next_key(key_rotator.KEYCHAIN)
     #         GET_COUNT = 0
-    #     price = getPricesRoute(sku, STORE)
+        price = getPricesRoute(sku, STORE)
         if price != "error":
             priceDict[sku] = price
 
