@@ -24,8 +24,6 @@ To run the flask site on your local network, run these lines on the command line
 
 Then, go to the ip address indicated on the command line.
 
-***INSERT USAGE PICTURES HERE***
-
 ### Enhancements
 With more time or resources this project could be improved by:
 - Train our own neural network to properly identify food types
