@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, g
+from flask import Flask, render_template, request
 import nlp_parser
 import scraping
 import Router
@@ -17,21 +17,18 @@ ingList = []
 @app.route('/result', methods = {'POST', 'GET'})
 def result():
     if request.method == 'POST':
-        #for ing in ingList:
-            # call Router's method
-            myListofDicts = [{
-                "name": "salt",
-                "price":"1.00",
-                "shelf":"L",
-                "aisle":12
-            }, {
-                "name": "pepper",
-                "price": "10000.00",
-                "shelf": "R",
-                "aisle": 21
+        myListofDicts = []
+        missingItems = []
+        totalPrice = 0.00
+        for ing in ingList:
+            product = Router.getSkuRoute(ing)
+            if product['name'] == "No availabilities at this location":
+                missingItems.append(ing)
+            else:
+                myListofDicts.append(product)
+                totalPrice += product['price']
 
-            }]
-            return render_template("result.html", dictList=myListofDicts)
+        return render_template("result.html", dictList=myListofDicts, missing=missingItems, price=round(totalPrice,2))
 
 @app.route('/confirm', methods = {'POST', 'GET'})
 def confirm():

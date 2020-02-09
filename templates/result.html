@@ -12,6 +12,16 @@
   width: 40%;
 }
 
+#missingList {
+  margin-top: 20px;
+  margin-left:auto;
+  margin-right:auto;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  color:white;
+  border-collapse: collapse;
+  width: 40%;
+}
+
 #ingredientList td, #ingredientList th {
   text-align: center;
   border: 1px solid #ddd;
@@ -52,16 +62,28 @@
 
             {% for dict in dictList %}
             <td>{{dict["name"]}}</td>
-            <td>{{dict["price"]}}</td>
             <td>{{dict["aisle"]}}</td>
             <td>{{dict["shelf"]}}</td>
+            <td>{{dict["price"]}}</td>
 
             </tr>
             					{% endfor %}
-
+    <th colspan="3" >Total Price:</th>
+            <td>{{price}}</td>
 
 
 
         </table>
+   <br>
+
+   <table id="missingList">
+
+       <tr><thead><th>We couldn't find these items...</th></thead></tr>
+                   {% for ing in missing %}
+            <td>{{ing}}</td>
+   </tr>
+       {% endfor %}
+
+   </table>
    </body>
 </html>

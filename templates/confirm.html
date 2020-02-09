@@ -1,6 +1,27 @@
 <html>
 <head>
 <style>
+
+#logo {
+	width:495px;
+	height:327px;
+    position: relative;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top:35px;
+
+}
+#logo img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width:495px;
+	height:327px;
+    position: absolute;
+    top: 0px;
+}
+
 #ingredientList {
   margin-top: 20px;
   margin-left:auto;
@@ -28,14 +49,15 @@
   color: white;
 }
 </style>
-
 		<link rel="stylesheet" href="{{ url_for('static', filename='centeredcss.css') }}">
+
+
 	</head>
 
 	<div id="logo">
 		<img src="/static/img/logotransp.png" alt="logo"/>
 	</div>
-   <body>
+<body>
 
 <table id="ingredientList">
 	<thead>
