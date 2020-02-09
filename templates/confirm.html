@@ -1,5 +1,34 @@
 <html>
-	<head>
+<head>
+<style>
+#ingredientList {
+  margin-top: 20px;
+  margin-left:auto;
+  margin-right:auto;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 40%;
+}
+
+#ingredientList td, #ingredientList th {
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#ingredientList tr:nth-child(even){background-color: #f2f2f2;}
+
+#ingredientList tr:hover {background-color: #ddd;}
+
+#ingredientList th {
+  padding-top: 12px;
+  font-size: 20px;
+  text-align: center;
+  background-color: #367c3a;
+  color: white;
+}
+</style>
+
 		<link rel="stylesheet" href="{{ url_for('static', filename='centeredcss.css') }}">
 	</head>
 
@@ -9,7 +38,7 @@
 	<!-- <hr class="headerLine"> -->
 	
    <body>
-   <table>
+   <!-- <table>
 		<tr>
 			<th>Ingredient</th>
 		</tr>
@@ -18,6 +47,26 @@
 			<td>{{ing}}</td> 
 		</tr>
 		{% endfor %}
-	</table>
-   </body>
+	</table> -->
+
+
+<table id="ingredientList">
+	<thead>
+	  <tr>
+		<th colspan="2" >Ingredients</th>
+	  </tr>
+	</thead>
+			{% for ing in ingList %}
+		<tr>
+			<td>{{ing}}</td>
+		<!--	<td>
+    <form method="post">
+        <input type="submit" value="Delete" value = {{ing}}>
+    </form>			</td>
+		</tr> -->
+		{% endfor %}
+
+</table>
+
+</body>
 </html>

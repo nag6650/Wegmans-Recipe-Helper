@@ -3,6 +3,9 @@ import scraping
 
 
 app = Flask(__name__)
+ingList = []
+ButtonPressed = 0
+
 #@app.route('/result', methods = ['POST', 'GET'])
 #def hello_world():
 #    if request.method == 'POST':
@@ -12,11 +15,16 @@ app = Flask(__name__)
 @app.route('/confirm', methods = {'POST', 'GET'})
 def confirm():
     if request.method == 'POST':
-        #get array
-        ingList = ['apple', 'orange', 'milk']
+        # ingList = get array
+        # try:
+        #     ingName = request.form['value']
+        #     ingList.remove(ingName)
+        # except Exception:
+        #     pass
         return render_template("confirm.html", ingList=ingList)
 
 
 @app.route('/')
 def index():
-   return render_template('testsite.html')
+    ingList = ['apple', 'orange', 'milk']
+    return render_template('testsite.html')
