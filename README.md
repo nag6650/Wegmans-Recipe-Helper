@@ -20,7 +20,12 @@ BeautifulSoup4 (python web scraping): https://pypi.org/project/beautifulsoup4/
 ***INSERT USAGE PICTURES HERE***
 
 ### Enhancements
-***INSERT CURRENT ISSUES AND POTENTIAL ENHANCEMENTS/FIXING***
+With more time or resources this project could be improved by:
+- Using machine learning to remove / keep mislabeled ingredients
+- Deploy to a live environment (web and mobile)
+- More substance to the web environment (links, store map, etc.)
+- Improvements to the Wegman's API (more requests per minute, more efficient queries for common items, implementing store locator and recipe features)
+-
 
 ### Deployment
 Flask has several options and tutorials for deploying to a live environment: https://flask.palletsprojects.com/en/1.1.x/deploying/
