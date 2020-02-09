@@ -45,10 +45,8 @@ def confirm():
             except Exception:
                 try:
                     ingName = request.form['ing']
-                    print(ingName)
                     ingList.append(ingName)
                 except:
-                    print("poop")
                     pass
                 pass
             pass
