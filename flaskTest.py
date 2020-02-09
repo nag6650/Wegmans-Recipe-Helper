@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, g
 import nlp_parser
 import scraping
+import Router
 
 
 app = Flask(__name__)
@@ -12,6 +13,12 @@ ingList = []
 #    if request.method == 'POST':
 #        return scraping.scrape(request.form['Name'])
 #        #return render_template("result.html", result=res)
+
+@app.route('/result', methods = {'POST', 'GET'})
+def result():
+    if request.method == 'POST':
+        for ing in ingList:
+
 
 @app.route('/confirm', methods = {'POST', 'GET'})
 def confirm():
@@ -34,4 +41,4 @@ def confirm():
 
 @app.route('/')
 def index():
-    return render_template('testsite.html')
+    return render_template('index.html')

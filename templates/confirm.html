@@ -47,17 +47,22 @@
 		<tr>
 			<td>{{ing}}</td>
 		<td>
-    <!--<form method="post">
-        <input type="submit" value="Delete" action="http://localhost:5000/confirm" value = {{ing}}>
-    </form>			</td>
-		</tr> -->
 			<form class="submit-form" action="http://localhost:5000/confirm" method = "POST">
 				<input type="submit" name="submit_button" name="hi" value="{{ing}}"/>
-				</form>
-
+			</form>
 		{% endfor %}
 
 </table>
+
+		<br>
+   		<div class="submit-page">
+			<div class="form">
+				<form class="submit-form" action="http://localhost:5000/result" method = "POST">
+				  <button type="submit" value="submit">Continue</button>
+				</form>
+			</div>
+		</div>
+
 
 </body>
 </html>
