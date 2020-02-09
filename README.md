@@ -1,6 +1,6 @@
-# Wegman's Recipe Helper
+# Wegmans Recipe Helper
 
-Wegman's Recipe Helper is designed to make home cooking easier! Simply input the URL of a recipe on the Web UI and a list of ingredients will be generated. After the customer confirms the ingredients (adding and deleting elements as neccessary), a convenient view is generated for every item–name, price, and location. With this tool, going from recipe to dinner table has never been easier!
+Wegmans Recipe Helper is designed to make home cooking easier! Simply input the URL of a recipe on the Web UI and a list of ingredients will be generated. After the customer confirms the ingredients (adding and deleting elements as neccessary), a convenient view is generated for every item–name, price, and location. With this tool, going from recipe to dinner table has never been easier!
 
 
 ### Getting Started
@@ -8,13 +8,13 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Flask (python web environment): https://flask.palletsprojects.com/en/1.1.x/installation/
+- **Flask** (python web environment): https://flask.palletsprojects.com/en/1.1.x/installation/
 
-Google Cloud Natural Langage API: https://cloud.google.com/natural-language/docs/reference/libraries#client-libraries-install-python, https://cloud.google.com/natural-language/docs/analyzing-entities#language-entities-string-python
+- **Google Cloud Natural Langage API**: https://cloud.google.com/natural-language/docs/reference/libraries#client-libraries-install-python, https://cloud.google.com/natural-language/docs/analyzing-entities#language-entities-string-python
 
-Wegman's API: https://dev.wegmans.io/product#product=hackathon (subscribe to the API and apply your own subscription key)
+- **Wegmans API**: https://dev.wegmans.io/product#product=hackathon (subscribe to the API and apply your own subscription key)
 
-BeautifulSoup4 (python web scraping): https://pypi.org/project/beautifulsoup4/
+- **BeautifulSoup4** (python web scraping): https://pypi.org/project/beautifulsoup4/
 
 ### Usage
 ***INSERT USAGE PICTURES HERE***
@@ -24,7 +24,7 @@ With more time or resources this project could be improved by:
 - Train our own neural network to properly identify food types
 - Deploy to a live environment (web and mobile)
 - More substance to the web environment (links, store map, etc.)
-- Enhancements for the Wegman's API (more requests per minute, more efficient queries for common items, implementing store locator and recipe features)
+- Enhancements for the Wegmans API (more requests per minute, more efficient queries for common items, implementing store locator and recipe features)
 
 ### Deployment
 Flask has several options and tutorials for deploying to a live environment: https://flask.palletsprojects.com/en/1.1.x/deploying/
@@ -32,8 +32,9 @@ Flask has several options and tutorials for deploying to a live environment: htt
 
 ### Built With
 - Flask - The web framework used
-- Google Natural Language API - Entity Analysis
-- Wegman's API - Used to determine product information
+- Google Natural Language API - Entity analysis
+- Wegmans API - Used to determine product information
+- BeautifulSoup4 - Web scraping
 
 ### Authors
 - Nick Gardner - Web Scraping
