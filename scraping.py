@@ -64,6 +64,11 @@ def scrape(url):
     for EachPart in soup.find_all("li", {"class": regex}):
         arr[10] += EachPart.get_text()
 
+    arr.append("")
+    regex = re.compile('.*ingredients.*')
+    for EachPart in soup.find_all("li", {"itemprop": regex}):
+        arr[11] += EachPart.get_text()
+
     best_string = ""
     best_length = -1;
     for str in arr:
@@ -96,6 +101,6 @@ def parse(string):
 
 
 def main():
-    return parse(scrape("https://tasty.co/recipe/parchment-lemon-dill-salmon"))
+    return parse(scrape("https://www.foodandwine.com/recipes/steak-diane"))
 
 print(main())
