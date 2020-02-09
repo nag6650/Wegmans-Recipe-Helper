@@ -37,7 +37,7 @@ def confirm():
     if request.method == 'POST':
         global ingList
         try:
-            ingName = request.form['submit_button']
+            ingName = request.form['submitButton']
             ingList.remove(ingName)
         except Exception:
             try:
