@@ -34,6 +34,11 @@ def scrape(url):
     for EachPart in soup.find_all("ul", {"id" : regex}):
         arr[4] += EachPart.get_text()
 
+    arr.append("")
+    regex = re.compile('.*recipe-ingredients.*')
+    for EachPart in soup.find_all("div", {"class": regex}):
+        arr[5] += EachPart.get_text()
+
     '''
     for i in arr:
         print i
@@ -60,3 +65,14 @@ def scrape(url):
                                 break
 
     return best_string
+
+
+def parse(string):
+    pat = re.compile(r"([0-9])")
+    string = (pat.sub(" \\1 ", string))
+
+    return string
+
+
+def main(url):
+    parse(scrape(url))
