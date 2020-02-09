@@ -87,6 +87,8 @@ def scrape(url):
     return best_string
 
 def parse(string):
+    string = string.split("\n")
+    string = " ".join(string)
     pat = re.compile(r"([0-9])")
     string = (pat.sub(" \\1 ", string))
 
