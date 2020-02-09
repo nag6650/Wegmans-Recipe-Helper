@@ -17,14 +17,23 @@ These instructions will get you a copy of the project up and running on your loc
 - **BeautifulSoup4** (python web scraping): https://pypi.org/project/beautifulsoup4/
 
 ### Usage
+To run the flask site on your local network, run these lines on the command line in the directory containing site.py:
+
+>set FLASK_APP=site.py  
+>python -m flask run
+
+Then, go to the ip address indicated on the command line.
+
 ***INSERT USAGE PICTURES HERE***
 
 ### Enhancements
 With more time or resources this project could be improved by:
 - Train our own neural network to properly identify food types
+- Identify and display amount of each ingredient neccessary for the recipe
 - Deploy to a live environment (web and mobile)
 - More substance to the web environment (links, store map, etc.)
 - Enhancements for the Wegmans API (more requests per minute, more efficient queries for common items, implementing store locator and recipe features)
+- Subscription key rotation / API call caching to reduce requests per minute
 
 ### Deployment
 Flask has several options and tutorials for deploying to a live environment: https://flask.palletsprojects.com/en/1.1.x/deploying/
