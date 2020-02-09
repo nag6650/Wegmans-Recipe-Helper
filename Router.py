@@ -216,13 +216,13 @@ def getLocRoute(skuNum, storeId):
     locInfo = (aisleNum, aisleSide, shelfNum)
 
     return locInfo
-
-if __name__ == "__main__":
-    test_term = input("Enter a food item\n")
-    start_time = time.time()
-    print(getItemRoute(test_term))
-    end_time = time.time()
-    print(end_time-start_time)
+#
+# if __name__ == "__main__":
+#     test_term = input("Enter a food item\n")
+#     start_time = time.time()
+#     print(getItemRoute(test_term))
+#     end_time = time.time()
+#     print(end_time-start_time)
 
 
     # getSkuRoute("cheddar cheese")

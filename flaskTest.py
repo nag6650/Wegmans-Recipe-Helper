@@ -21,7 +21,7 @@ def result():
         missingItems = []
         totalPrice = 0.00
         for ing in ingList:
-            product = Router.getSkuRoute(ing)
+            product = Router.getItemRoute(ing)
             if product['name'] == "No availabilities at this location":
                 missingItems.append(ing)
             else:
