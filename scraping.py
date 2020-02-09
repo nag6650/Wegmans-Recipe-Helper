@@ -1,14 +1,31 @@
+"""
+file: scraping.py
+event: Brick Hack 6
+author: Nick Gardner
+Purpose: Scrapes websites for ingredient information
+"""
+
 import requests
 import re
 from bs4 import BeautifulSoup
 
 
 def scrape(url):
+    """scrapes url using several different selectors. Determines most likely best
+    ingredients list and returns it"""
+
+    #grab url of recipe page
     page = requests.get(url)
 
+    #parses page using beautiful soup
     soup = BeautifulSoup(page.content, 'html.parser')
 
+    #search for likely locations for ingredients list. store strings of searches
+    #in following array
     arr = []
+
+
+    #each of the following is a likely selector for ingredients list
     arr.append("")
     regex = re.compile('.*ingredients.*')
     for EachPart in soup.find_all("div", {"class" : regex}):
@@ -69,6 +86,8 @@ def scrape(url):
     for EachPart in soup.find_all("li", {"itemprop": regex}):
         arr[11] += EachPart.get_text()
 
+    #calculutes likely best ingredients list by finding the shortest string that is
+    #non-zero and contains both numbers and letters
     best_string = ""
     best_length = -1;
     for str in arr:
@@ -92,6 +111,7 @@ def scrape(url):
     return best_string
 
 def parse(string):
+    """remove newlines, slashes, parentheses, and adds spaces around numbers"""
     string = string.split("\n")
     string = " ".join(string)
     string = string.split(")")
