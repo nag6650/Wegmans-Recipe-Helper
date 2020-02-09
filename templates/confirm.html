@@ -11,6 +11,19 @@
   height: 120px;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 #logo {
@@ -96,25 +109,37 @@
 		</td>
 			<td>
 
-				<button type="submit" value="submit">New Ingredient</button>
+				<button type="submit" value="submit" >New Ingredient</button>
 												</form></div>
 
 			</td>
 	</tr>
 
 </table>
-
-<div class="loader" style="display: none;"></div>
+<div class="loader"  id="loading" style="display: none;"></div>
 
 		<br>
    		<div class="submit-page">
 			<div class="form">
 				<form class="submit-form" action="http://localhost:5000/result" method = "POST">
-				  <button type="submit" value="submit">Continue</button>
+				  <button onclick="toggle_visibility('loading')" type="submit" value="submit">Continue</button>
 				</form>
 			</div>
 		</div>
 
 
+<script type="text/javascript">
+   function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+   }
+</script>
+
+
 </body>
+
+
 </html>
