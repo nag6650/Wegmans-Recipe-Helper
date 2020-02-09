@@ -14,6 +14,11 @@ URLEND = "api-version=2018-10-18&subscription-key=c776a0f5153a4b5d8ac80f114e7ce3
 STORE = "25"
 
 def getSkuRoute( prodName ):
+    """
+
+    :param prodName:
+    :return:
+    """
 
     prodSearch = "search?query="
     quoteProdName = '"' + prodName + '"'
@@ -39,7 +44,7 @@ def getSkuRoute( prodName ):
         #check availability in store
         avail = getAvailabilityRoute(things["sku"], STORE)
         if (avail): #add the available ones to a list
-            availSkuList.append( things["sku"] )
+            availSkuList.append(things["sku"])
 
     if(len(availSkuList)==0):
         return "No Availabilities"
@@ -51,36 +56,48 @@ def getSkuRoute( prodName ):
 
     sortedPriceDict = OrderedDict(sorted(priceDict.items(), key = lambda kv:(kv[1], kv[0])))
     lowPriceTup = (next(iter(sortedPriceDict.items())))
-    print(lowPriceTup[0])
-    print(lowPriceTup[1])
+
+    lowestPrice = lowPriceTup[1]
+    lowestSku = lowPriceTup[0]
 
 
-def getAvailabilityRoute( skuNum, storeNum ):
+
+def getAvailabilityRoute( skuNum, storeId ):
+    """
+
+    :param skuNum:
+    :param storeId:
+    :return:
+    """
+    availSearch = "/availabilities/"
+
+    url = URLBEG + str(skuNum) + availSearch + str( storeId ) + '?' + URLEND
+
+    payload = {}
+    headers = {}
+
+    response = requests.request("GET", url, headers=headers, data=payload)
+
+    obj = response.json()
+
+    # print(json.dumps(obj, indent=4))
+    # print(type(obj))
+    for keys, values in obj.items():
+        if (values == True):
+            # availItemList.append(obj["sku"])
+            return True
 
 
-        availSearch = "/availabilities/"
+def getPricesRoute(skuNum, storeId):
+    """
 
-        url = URLBEG + str(skuNum) + availSearch + str(storeNum) + '?' + URLEND
-
-        payload = {}
-        headers = {}
-
-        response = requests.request("GET", url, headers=headers, data=payload)
-
-        obj = response.json()
-
-        # print(json.dumps(obj, indent=4))
-        # print(type(obj))
-        for keys, values in obj.items():
-            if (values == True):
-                # availItemList.append(obj["sku"])
-                return True;
-
-
-def getPricesRoute(skuNum, storeNum):
+    :param skuNum:
+    :param storeId:
+    :return:
+    """
     priceSearch = "/prices/"
 
-    url = URLBEG + str(skuNum) + priceSearch + str(storeNum) + '?' + URLEND
+    url = URLBEG + str(skuNum) + priceSearch + str(storeId) + '?' + URLEND
 
     payload = {}
     headers = {}
@@ -94,6 +111,16 @@ def getPricesRoute(skuNum, storeNum):
     return obj["price"]
             # availItemList.append(obj["sku"])
 
+def getLocRoute(skuNum, storeId):
+    """
+
+    :param skuNum:
+    :param storeId:
+    :return:
+    """
+    locations = "/locations/"
+
+    url = URLBEG
 
 if __name__ == "__main__":
 
