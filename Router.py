@@ -11,6 +11,7 @@ import json
 import time
 import functools
 import key_rotator
+import queue
 from collections import OrderedDict
 
 URLBEG = "https://api.wegmans.io/products/"
@@ -20,7 +21,7 @@ URLEND = APIVERSION + APIKEY
 STORE = "25"
 GET_COUNT = 0
 
-@functools.lru_cache(maxsize=128)
+# @functools.lru_cache(maxsize=128)
 def getItemRoute( prodName ):
     """
 
@@ -56,8 +57,10 @@ def getItemRoute( prodName ):
         GET_COUNT += 1
         if (GET_COUNT > 90):
             APIKEY = key_rotator.next_key(key_rotator.KEYCHAIN)
-            GET_COUNT == 0
-
+            GET_COUNT = 0
+        avail = getAvailabilityRoute(result["sku"], STORE)
+        if (avail == True):
+            availSkuList.append(result["sku"])
     # if (len(resultsList) > 30):
         # for i in range(0, 30, 1):
 
@@ -73,9 +76,6 @@ def getItemRoute( prodName ):
     #         if (avail==True): #add the available ones to a list
     #             availSkuList.append(results["sku"])
 
-    for i in range(0, len(resultsList), 1 )
-        if i == 90 :
-
 
 
 
@@ -87,6 +87,10 @@ def getItemRoute( prodName ):
     #for all the available ones append the price
     priceDict = {}
     for sku in availSkuList:
+        GET_COUNT += 1
+        if (GET_COUNT > 90):
+            APIKEY = key_rotator.next_key(key_rotator.KEYCHAIN)
+            GET_COUNT = 0
         price = getPricesRoute(sku, STORE)
         if price != "error":
             priceDict[sku] = price
@@ -107,16 +111,20 @@ def getItemRoute( prodName ):
     lowestSku = lowPriceTup[0]
 
     #get location info and get the individual values
+    GET_COUNT += 1
+    if (GET_COUNT > 90):
+        APIKEY = key_rotator.next_key(key_rotator.KEYCHAIN)
+        GET_COUNT = 0
     infoLoc = getLocRoute(lowestSku, STORE)
 
     lowestAisle = infoLoc[0]
     lowestSide = infoLoc[1]
     lowestShelf = infoLoc[2]
 
-    for things2 in obj["results"]:
+    for result2 in obj["results"]:
         # check availability in store
-        if (things2["sku"] == lowestSku):  # add the available ones to a list
-            lowestName = things2["name"]
+        if (result2["sku"] == lowestSku):  # add the available ones to a list
+            lowestName = result2["name"]
 
     #create the finalized dictionary with name, price, and location(aisle,side,shelf)
     itemKeyNames = ["name", "price", "aisle", "aisleSide", "shelf"]
@@ -217,6 +225,8 @@ def getLocRoute(skuNum, storeId):
     return locInfo
 
 if __name__ == "__main__":
+    key_rotator.init_key("78716f9496d8471396c504a473056015", "4a9d2790a817469d952b3256638451f2", "bfe5e563c583455bb5d648e755550000", "dfb68897d25e49ba82d737c89bca4bed", "d55f217983154e0da8fdcc39f0ff6668", "e79ddcf58c304ed9ad482ba020726690", "66570dea5caa4ab79471776911ac3f95", "f2b42535298e4633976b8844df5c1ab9")
+    print(key_rotator.KEYCHAIN)
     test_term = input("Enter a food item\n")
     start_time = time.time()
     print(getItemRoute(test_term))

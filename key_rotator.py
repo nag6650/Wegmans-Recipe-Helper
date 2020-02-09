@@ -9,7 +9,7 @@ purpose: A module that rotates the subscription keys for Wegman's API.
 import queue
 KEYCHAIN = queue.Queue()
 
-def init_keys( *args ):
+def init_keys(*args):
     """
     pass the Wegman's API Subscription Keys to this initializer
     :param args: variable number of subscription keys
@@ -18,10 +18,9 @@ def init_keys( *args ):
     global KEYCHAIN
     for arg in args:
         KEYCHAIN.put(arg)
-
+    return none
 
 def next_key(keychain):
-
     front = keychain.get()
     keychain.put(front)
     print(front)
