@@ -32,6 +32,7 @@ With more time or resources this project could be improved by:
 - Deploy to a live environment (web and mobile)
 - More substance to the web environment (links, store map, etc.)
 - Enhancements for the Wegmans API (more requests per minute, more efficient queries for common items, implementing store locator and recipe features)
+- Subscription key rotation / API call caching to reduce requests per minute
 
 ### Deployment
 Flask has several options and tutorials for deploying to a live environment: https://flask.palletsprojects.com/en/1.1.x/deploying/
