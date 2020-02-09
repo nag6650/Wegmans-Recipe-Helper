@@ -1,4 +1,4 @@
-Wegman's Recipe Helper
+#Wegman's Recipe Helper
 
 Wegman's Recipe Helper is designed to make home cooking easier! Simply input the URL of a recipe on the Web UI and a list of ingredients will be generated. After the customer confirms the ingredients (adding and deleting elements as neccessary), a convenient view is generated for every item–name, price, and location. With this tool, going from recipe to dinner table has never been easier!
 
@@ -18,6 +18,9 @@ BeautifulSoup4 (python web scraping): https://pypi.org/project/beautifulsoup4/
 
 Usage
 ***INSERT USAGE PICTURES HERE***
+
+Enhancements
+***INSERT CURRENT ISSUES AND POTENTIAL ENHANCEMENTS/FIXING***
 
 Deployment
 https://flask.palletsprojects.com/en/1.1.x/deploying/
