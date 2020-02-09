@@ -54,8 +54,8 @@ def getItemRoute( prodName ):
         # avail = getAvailabilityRoute(result["sku"], STORE)
         # if (avail == True):
         #     availSkuList.append(result["sku"])
-    if (len(resultsList) > 30):
-        for i in range(0, 30, 1):
+    if (len(resultsList) > 15):
+        for i in range(0, 15, 1):
 
             # randomItem = random.choice(resultsList)
             # check availability in store
