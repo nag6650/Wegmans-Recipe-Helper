@@ -17,6 +17,13 @@ These instructions will get you a copy of the project up and running on your loc
 - **BeautifulSoup4** (python web scraping): https://pypi.org/project/beautifulsoup4/
 
 ### Usage
+To run the flask site on your local network, run these lines on the command line in the directory containing site.py:
+
+>set FLASK_APP=site.py  
+>python -m flask run
+
+Then, go to the ip address indicated on the command line.
+
 ***INSERT USAGE PICTURES HERE***
 
 ### Enhancements
