@@ -8,13 +8,13 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Flask (python web environment): https://flask.palletsprojects.com/en/1.1.x/installation/
+- **Flask** (python web environment): https://flask.palletsprojects.com/en/1.1.x/installation/
 
-Google Cloud Natural Langage API: https://cloud.google.com/natural-language/docs/reference/libraries#client-libraries-install-python, https://cloud.google.com/natural-language/docs/analyzing-entities#language-entities-string-python
+- **Google Cloud Natural Langage API**: https://cloud.google.com/natural-language/docs/reference/libraries#client-libraries-install-python, https://cloud.google.com/natural-language/docs/analyzing-entities#language-entities-string-python
 
-Wegman's API: https://dev.wegmans.io/product#product=hackathon (subscribe to the API and apply your own subscription key)
+- **Wegman's API**: https://dev.wegmans.io/product#product=hackathon (subscribe to the API and apply your own subscription key)
 
-BeautifulSoup4 (python web scraping): https://pypi.org/project/beautifulsoup4/
+- **BeautifulSoup4** (python web scraping): https://pypi.org/project/beautifulsoup4/
 
 ### Usage
 ***INSERT USAGE PICTURES HERE***
