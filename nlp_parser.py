@@ -1,8 +1,14 @@
+"""
+file: nlp_parser.py
+event: Brick Hack 6
+author: Ethan Howes
+Purpose: Finds "food" entities within
+ingredients text scraped from website
+"""
+
 from google.cloud import language
 from google.cloud.language import enums
 from google.cloud.language import types
-
-from scraping import scrape, parse
 
 e_types = enums.Entity.Type
 
@@ -30,27 +36,25 @@ good_words = ["lime", "Lime", "jalapenos", "Jalapenos", "red peppers", "green pe
 
 
 def noise_remover(ingredient_list):
-    # newline_parse = ingredient_list.split("\n")
-    # ingredient_list = " ".join(newline_parse)
+    """ Filters out unwanted words"""
     ingredients_parsed = ingredient_list.split(" ")
-    # print(ingredients_parsed)
     good_ingredients = []
     for w in ingredients_parsed:
-        # print("Word: ", w, "In bad? ", w in bad_words)
         if w not in bad_words:
             good_ingredients.append(w)
-    print("\nGoodies\n", good_ingredients)
     return " ".join(good_ingredients)
 
 
 def ingredient_getter(ingredient_list):
-    print("\nMine\n", ingredient_list)
+    """Calls functions necessary to remove noise in text, sets
+    aside 'good' words that should be kept, and analyses the final
+    text for entities to return final food entity list"""
     ingredient_list = noise_remover(ingredient_list)
-    print("noise: ", ingredient_list)
+
     entity_list = []
 
+    # Keep words in the good list
     for w in ingredient_list.split(" "):
-        print("Word: ", w, "In good? ", w in bad_words)
         if w in good_words:
             entity_list.append(w)
 
@@ -58,20 +62,11 @@ def ingredient_getter(ingredient_list):
         content=ingredient_list,
         type=enums.Document.Type.PLAIN_TEXT)
     response = client.analyze_entities(document, encoding_type)
+    # Perform entity analysis
     for entity in response.entities:
-        print(u"Representative name for the entity: {}".format(entity.name))
 
-        print(u"Entity type: {}".format(enums.Entity.Type(entity.type).name))
         if enums.Entity.Type(entity.type) not in bad_types:
             entity_list.append(entity.name)
 
-        print("\n")
     entity_list = list(dict.fromkeys(entity_list))
     return entity_list
-
-
-# def main():
-#     print(ingredient_getter(parse(scrape("https://www.spendwithpennies.com/club-sandwich/"))))
-#
-#
-# main()
