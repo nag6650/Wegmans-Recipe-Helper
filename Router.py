@@ -12,8 +12,9 @@ import random
 from collections import OrderedDict
 
 URLBEG = "https://api.wegmans.io/products/"
+APIVERSION = "api-version=2018-10-18&subscription-key="
 APIKEY = "78716f9496d8471396c504a473056015"
-URLEND = "api-version=2018-10-18&subscription-key=" + APIKEY
+URLEND = APIVERSION + APIKEY
 STORE = "25"
 
 def getSkuRoute( prodName ):
@@ -197,5 +198,7 @@ def getLocRoute(skuNum, storeId):
 
 if __name__ == "__main__":
 
-    test_term = input("Enter a food item\n")
-    getSkuRoute(str(test_term))
+    # test_term = input("Enter a food item\n")
+    getSkuRoute("eggs")
+    getSkuRoute("cheddar cheese")
+    getSkuRoute("ham")
