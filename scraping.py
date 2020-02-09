@@ -45,9 +45,9 @@ def scrape(url):
         arr[6] += EachPart.get_text()
 
     arr.append("")
-    regex = re.compile('.*ingredients.*')
-    for EachPart in soup.find_all("li", {"itemprop": regex}):
-        arr[6] += EachPart.get_text()
+    regex = re.compile('.*ingredients-section.*')
+    for EachPart in soup.find_all("ul", {"class": regex}):
+        arr[7] += EachPart.get_text()
 
     best_string = ""
     best_length = -1;
@@ -80,6 +80,6 @@ def parse(string):
 
 
 def main():
-    return parse(scrape("https://www.beefitswhatsfordinner.com/recipes/recipe/5438/bibimbap-style-korean-marinated-flank-steak"))
+    return parse(scrape("https://www.allrecipes.com/recipe/8495/chicken-cordon-bleu-i/?internalSource=recipe%20hub&referringId=86&referringContentType=Recipe%20Hub&clickId=cardslot%2033"))
 
 print(main())
