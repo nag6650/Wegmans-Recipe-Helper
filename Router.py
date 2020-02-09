@@ -7,10 +7,14 @@ Purpose: This will make the Wegman's API call to get a JSON List of all products
 """
 
 import requests
+import json
+import random
 from collections import OrderedDict
 
 URLBEG = "https://api.wegmans.io/products/"
-URLEND = "api-version=2018-10-18&subscription-key=c776a0f5153a4b5d8ac80f114e7ce3a1"
+APIVERSION = "api-version=2018-10-18&subscription-key="
+APIKEY = "78716f9496d8471396c504a473056015"
+URLEND = APIVERSION + APIKEY
 STORE = "25"
 
 def getSkuRoute( prodName ):
@@ -38,29 +42,70 @@ def getSkuRoute( prodName ):
     # print(obj["results"])
     # print(type(obj["results"]))
     availSkuList = []
+    resultsList = obj["results"]
 
-    for things in obj["results"]:
-
-        #check availability in store
-        avail = getAvailabilityRoute(things["sku"], STORE)
-        if (avail): #add the available ones to a list
-            availSkuList.append(things["sku"])
+    if (len(resultsList)> 30):
+        for i in range(0, 30, 1):
+            # randomItem = random.choice(resultsList)
+            #check availability in store
+            # avail = getAvailabilityRoute(randomItem["sku"], STORE)
+            avail = getAvailabilityRoute(resultsList[i]["sku"], STORE)
+            if (avail==True): #add the available ones to a list
+                availSkuList.append(resultsList[i]["sku"])
+    else:
+        for results in resultsList:
+            avail = getAvailabilityRoute(results["sku"], STORE)
+            if (avail==True): #add the available ones to a list
+                availSkuList.append(results["sku"])
 
     if(len(availSkuList)==0):
-        return "No Availabilities"
+        unavailDict = { "name" : "No availabilities at this location" }
+        print(unavailDict)
+        return unavailDict
+
     #for all the available ones append the price
     priceDict = {}
     for sku in availSkuList:
         price = getPricesRoute(sku, STORE)
-        priceDict[sku] = price
+        if price != "error":
+            priceDict[sku] = price
+
+
+    if(len(priceDict)==0):
+        unavailDict = { "name" : "No prices available" }
+        print(unavailDict)
+        return unavailDict
+    print(priceDict)
+
+
 
     sortedPriceDict = OrderedDict(sorted(priceDict.items(), key = lambda kv:(kv[1], kv[0])))
+    print(sortedPriceDict)
     lowPriceTup = (next(iter(sortedPriceDict.items())))
 
     lowestPrice = lowPriceTup[1]
     lowestSku = lowPriceTup[0]
 
+    #get location info and get the individual values
+    infoLoc = getLocRoute(lowestSku, STORE)
 
+    lowestAisle = infoLoc[0]
+    lowestSide = infoLoc[1]
+    lowestShelf = infoLoc[2]
+
+    for things2 in obj["results"]:
+        # check availability in store
+        if (things2["sku"] == lowestSku):  # add the available ones to a list
+            lowestName = things2["name"]
+
+    #create the finalized dictionary with name, price, and location(aisle,side,shelf)
+    itemKeyNames = ["name", "price", "aisle", "aisleSide", "shelf"]
+    itemKeyValues = [lowestName, lowestPrice, lowestAisle, lowestSide, lowestShelf]
+
+    item_dict = dict(zip(itemKeyNames, itemKeyValues))
+
+    print(item_dict)
+    return item_dict
 
 def getAvailabilityRoute( skuNum, storeId ):
     """
@@ -80,12 +125,12 @@ def getAvailabilityRoute( skuNum, storeId ):
 
     obj = response.json()
 
-    # print(json.dumps(obj, indent=4))
-    # print(type(obj))
-    for keys, values in obj.items():
-        if (values == True):
-            # availItemList.append(obj["sku"])
-            return True
+    try:
+        return(obj["isAvailable"])
+    except Exception:
+        return None
+
+
 
 
 def getPricesRoute(skuNum, storeId):
@@ -105,11 +150,15 @@ def getPricesRoute(skuNum, storeId):
     response = requests.request("GET", url, headers=headers, data=payload)
 
     obj = response.json()
-
     # print(json.dumps(obj, indent=4))
     # print(type(obj))
-    return obj["price"]
+    # return obj["price"]
             # availItemList.append(obj["sku"])
+
+    try:
+        return obj["price"]
+    except Exception:
+        return "error"
 
 def getLocRoute(skuNum, storeId):
     """
@@ -120,10 +169,36 @@ def getLocRoute(skuNum, storeId):
     """
     locations = "/locations/"
 
-    url = URLBEG
+    url = URLBEG + str(skuNum) + locations + storeId + '?' + URLEND
 
-#if __name__ == "__main__":
+    payload = {}
+    headers = {}
 
- #   test_term = input("Enter a food item\n")
- #   getSkuRoute(str(test_term))
- #   input("Close window to exit\n")
+    response = requests.request("GET", url, headers=headers, data=payload)
+
+    obj = response.json()
+
+    try:
+        aisleNum = obj["locations"][0]["name"]
+    except Exception:
+        aisleNum = None
+
+    try:
+        aisleSide = obj["locations"][0]["aisleSide"]
+    except Exception:
+        aisleSide = None
+    try:
+        shelfNum = obj["locations"][0]["shelfNumber"]
+    except Exception:
+        shelfNum = None
+
+    locInfo = (aisleNum, aisleSide, shelfNum)
+
+    return locInfo
+
+if __name__ == "__main__":
+
+    # test_term = input("Enter a food item\n")
+    getSkuRoute("eggs")
+    getSkuRoute("cheddar cheese")
+    getSkuRoute("ham")
