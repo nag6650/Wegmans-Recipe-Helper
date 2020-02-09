@@ -24,9 +24,14 @@ To run the flask site on your local network, run these lines on the command line
 
 Then, go to the ip address indicated on the command line.
 
+After running the previous commands and traveling to the ip address, the following page is displayed. The user inputs a url and presses the submit button to continue.
 ![Image of Home Page](recipeHelper_home.png)
+
+Next, the user is asked to confirm their selection. After adding / removing entries, the user presses the continue button to travel to the next stage.
 ![Image of Confirmation Page](recipeHelper_confirm.png)
-![Image of Confirmation Page](reciperHelper_table.png)
+
+Finally, the completed table with ingredients is displayed
+![Image of Table Page](reciperHelper_table.png)
 
 ### Enhancements
 With more time or resources this project could be improved by:
